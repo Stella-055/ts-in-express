@@ -36,3 +36,18 @@ export const gettask= async (req:Request, res:Response) => {
     res.json({ message: "Something went wrong , please try again later." });
   }
 };
+
+export const getonetask = async (req:Request, res:Response) => {
+  try {
+    const { id } = req.params;
+  
+    const task = await prisma.task.findFirst({
+      where: {
+        id,
+      },
+    });
+    task ? res.json(task) : res.json({ message: "Task not found." });
+  } catch (error) {
+    res.json({ message: "Error occurred." });
+  }
+};

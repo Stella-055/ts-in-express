@@ -26,3 +26,13 @@ app.use(express.json())
       }
 
 }
+
+export const gettask= async (req:Request, res:Response) => {
+  try {
+    const tasks = await prisma.task.findMany();
+    res.status(200);
+    res.json(tasks);
+  } catch (error) {
+    res.json({ message: "Something went wrong , please try again later." });
+  }
+};

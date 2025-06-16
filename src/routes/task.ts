@@ -1,11 +1,18 @@
 import { Router } from "express";
-import { createtask, getonetask, gettask } from "../controllers/task.contollers";
+import {
+  createtask,
+  deletetask,
+  getonetask,
+  gettask,
+  updatetask,
+} from "../controllers/task.contollers";
 
+const route = Router();
 
-const route = Router()
+route.post("/", createtask);
+route.get("/", gettask);
+route.get("/:id", getonetask);
+route.patch("/:id", updatetask);
+route.delete("/:id", deletetask);
 
-route.post("/", createtask)
-route.get("/",gettask)
-route.get("/:id", getonetask)
-
-export default route
+export default route;

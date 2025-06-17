@@ -6,10 +6,10 @@ import {
   gettask,
   updatetask,
 } from "../controllers/task.contollers";
-
+import { validate } from "../Middlewares/validate";
 const route = Router();
 
-route.post("/", createtask);
+route.post("/",validate, createtask);
 route.get("/", gettask);
 route.get("/:id", getonetask);
 route.patch("/:id", updatetask);
